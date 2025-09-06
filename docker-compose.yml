@@ -1,0 +1,136 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: pragati-postgres
+    environment:
+      POSTGRES_DB: pragati
+      POSTGRES_USER: pragati_user
+      POSTGRES_PASSWORD: pragati_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - pragati-network
+
+  # MongoDB
+  mongodb:
+    image: mongo:6.0
+    container_name: pragati-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - pragati-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: pragati-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - pragati-network
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: pragati-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - pragati-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pragati-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=pragati
+      - POSTGRES_USER=pragati_user
+      - POSTGRES_PASSWORD=pragati_password
+      - MONGODB_URI=mongodb://mongodb:27017/pragati
+      - REDIS_URL=redis://redis:6379
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - postgres
+      - mongodb
+      - redis
+      - elasticsearch
+    volumes:
+      - ./backend:/app
+      - ./ml-engine:/app/ml-engine
+    networks:
+      - pragati-network
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pragati-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - pragati-network
+    restart: unless-stopped
+
+  # ML Engine Service
+  ml-engine:
+    build:
+      context: ./ml-engine
+      dockerfile: Dockerfile
+    container_name: pragati-ml-engine
+    ports:
+      - "8001:8001"
+    environment:
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://mongodb:27017/pragati
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - mongodb
+      - redis
+    volumes:
+      - ./ml-engine:/app
+      - ./models:/app/models
+    networks:
+      - pragati-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  mongodb_data:
+  redis_data:
+  elasticsearch_data:
+
+networks:
+  pragati-network:
+    driver: bridge

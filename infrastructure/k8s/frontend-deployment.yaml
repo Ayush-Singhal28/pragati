@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pragati-frontend
+  labels:
+    app: pragati-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pragati-frontend
+  template:
+    metadata:
+      labels:
+        app: pragati-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: pragati/frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://pragati-backend-service:8000"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pragati-frontend-service
+spec:
+  selector:
+    app: pragati-frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer

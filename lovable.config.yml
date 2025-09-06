@@ -1,0 +1,71 @@
+# Lovable Integration - AI-powered full-stack development
+# Configuration for rapid prototyping and feature development
+
+lovable:
+  project_name: "Pragati Performance Platform"
+  description: "AI-powered performance tracking and career development platform"
+  
+  # Tech stack configuration
+  stack:
+    frontend:
+      framework: "React"
+      language: "TypeScript"
+      ui_library: "Material-UI"
+      state_management: "Redux Toolkit"
+      build_tool: "Vite"
+    
+    backend:
+      framework: "FastAPI"
+      language: "Python"
+      database: ["PostgreSQL", "MongoDB"]
+      cache: "Redis"
+      search: "Elasticsearch"
+    
+    ai_ml:
+      frameworks: ["TensorFlow", "scikit-learn", "transformers"]
+      languages: ["Python"]
+      models: ["sentiment-analysis", "performance-prediction", "recommendation-engine"]
+    
+    infrastructure:
+      containerization: "Docker"
+      orchestration: "Kubernetes"
+      cloud: "AWS"
+      monitoring: ["Prometheus", "Grafana"]
+
+  # Feature specifications
+  features:
+    - name: "Performance Dashboard"
+      description: "Real-time performance metrics and analytics"
+      components: ["charts", "metrics-cards", "trend-analysis"]
+      
+    - name: "Achievement System"
+      description: "Gamified achievement tracking with badges and points"
+      components: ["badge-system", "progress-tracking", "leaderboards"]
+      
+    - name: "AI Recommendations"
+      description: "Personalized career growth recommendations"
+      components: ["ml-models", "recommendation-api", "insights-ui"]
+      
+    - name: "Slack Integration"
+      description: "Automatic collaboration analysis from Slack activities"
+      components: ["slack-api", "sentiment-analysis", "collaboration-scoring"]
+
+  # Development preferences
+  preferences:
+    code_style: "clean_architecture"
+    testing: "comprehensive"
+    documentation: "detailed"
+    accessibility: "wcag_aa"
+    performance: "optimized"
+    security: "enterprise_grade"
+
+  # AI assistance areas
+  ai_focus:
+    - "Code generation and optimization"
+    - "Database schema design"
+    - "API endpoint creation"
+    - "UI component development"
+    - "Testing strategy"
+    - "Performance optimization"
+    - "Security best practices"
+    - "Documentation generation"

@@ -1,0 +1,60 @@
+# CodeRabbit Configuration for AI-powered code reviews
+name: CodeRabbit AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  coderabbit:
+    runs-on: ubuntu-latest
+    name: CodeRabbit AI Review
+    steps:
+      - name: AI Code Review
+        uses: coderabbitai/ai-pr-reviewer@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        with:
+          debug: false
+          review_simple_changes: false
+          review_comment_lgtm: false
+          openai_light_model: gpt-3.5-turbo
+          openai_heavy_model: gpt-4
+          openai_timeout_ms: 120000
+          language: en-US
+          path_filters: |
+            !dist/**
+            !**/*.lock
+            !**/*.md
+            !**/*.txt
+            !**/*.csv
+            !**/*.json
+            !**/package-lock.json
+            !**/yarn.lock
+            !node_modules/**
+            !build/**
+            !.git/**
+          system_message: |
+            You are @coderabbitai, an AI code reviewer for the Pragati performance tracking platform.
+            Focus on:
+            - Security vulnerabilities
+            - Performance optimization opportunities
+            - Code quality and best practices
+            - Potential bugs and edge cases
+            - TypeScript/Python type safety
+            - Database query optimization
+            - API design consistency
+            - ML model efficiency
+          summarize: |
+            Provide a concise summary of the changes and any important issues found.
+            Highlight security concerns, performance impacts, and architectural considerations.
+          summarize_release_notes: |
+            Generate release notes focusing on:
+            - New features added
+            - Performance improvements
+            - Bug fixes
+            - Breaking changes
+            - Security updates

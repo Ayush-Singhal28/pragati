@@ -1,0 +1,118 @@
+{
+  "workspaceSettings": {
+    "name": "Pragati Performance Platform",
+    "description": "AI-powered performance tracking and career development platform",
+    "version": "1.0.0"
+  },
+  
+  "aiAssistant": {
+    "enabled": true,
+    "model": "claude-3-sonnet",
+    "contextWindow": 32000,
+    "capabilities": [
+      "code-generation",
+      "code-review",
+      "debugging",
+      "refactoring",
+      "documentation",
+      "testing"
+    ],
+    "specializations": [
+      "React/TypeScript frontend development",
+      "Python/FastAPI backend development",
+      "ML/AI model development",
+      "Database design and optimization",
+      "DevOps and infrastructure",
+      "Performance optimization"
+    ]
+  },
+  
+  "projectStructure": {
+    "frontend": {
+      "path": "./frontend",
+      "type": "React",
+      "language": "TypeScript",
+      "framework": "Material-UI"
+    },
+    "backend": {
+      "path": "./backend",
+      "type": "FastAPI",
+      "language": "Python",
+      "databases": ["PostgreSQL", "MongoDB"]
+    },
+    "ml-engine": {
+      "path": "./ml-engine",
+      "type": "ML Service",
+      "language": "Python",
+      "frameworks": ["TensorFlow", "scikit-learn"]
+    },
+    "infrastructure": {
+      "path": "./infrastructure",
+      "type": "DevOps",
+      "tools": ["Docker", "Kubernetes", "AWS"]
+    }
+  },
+  
+  "developmentWorkflows": {
+    "feature-development": {
+      "steps": [
+        "Create feature branch",
+        "AI-assisted code generation",
+        "Automated testing",
+        "Code review with AI",
+        "Performance optimization",
+        "Documentation update"
+      ]
+    },
+    "debugging": {
+      "tools": ["AI error analysis", "Performance profiling", "Log analysis"],
+      "auto-suggestions": true
+    },
+    "refactoring": {
+      "ai-powered": true,
+      "safety-checks": true,
+      "impact-analysis": true
+    }
+  },
+  
+  "codeGeneration": {
+    "templates": {
+      "react-component": "./templates/react-component.template",
+      "api-endpoint": "./templates/api-endpoint.template",
+      "ml-model": "./templates/ml-model.template",
+      "database-model": "./templates/database-model.template"
+    },
+    "conventions": {
+      "naming": "camelCase for JS/TS, snake_case for Python",
+      "structure": "Clean Architecture patterns",
+      "documentation": "JSDoc for frontend, docstrings for backend"
+    }
+  },
+  
+  "testing": {
+    "frontend": {
+      "framework": "Jest + React Testing Library",
+      "coverage": "80%+",
+      "ai-test-generation": true
+    },
+    "backend": {
+      "framework": "pytest",
+      "coverage": "85%+",
+      "ai-test-generation": true
+    }
+  },
+  
+  "performance": {
+    "monitoring": true,
+    "optimization-suggestions": true,
+    "bundle-analysis": true,
+    "database-query-optimization": true
+  },
+  
+  "security": {
+    "vulnerability-scanning": true,
+    "dependency-checking": true,
+    "code-analysis": true,
+    "ai-security-review": true
+  }
+}
