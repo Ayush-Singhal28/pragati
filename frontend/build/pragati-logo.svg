@@ -1,0 +1,33 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6BB6FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B794F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F6AD55;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="180" fill="url(#bgGradient)" opacity="0.8"/>
+  
+  <!-- Lotus/Mandala Design -->
+  <g transform="translate(200,200)">
+    <!-- Outer petals -->
+    <g stroke="white" stroke-width="3" fill="none">
+      <path d="M0,-80 Q20,-60 0,-40 Q-20,-60 0,-80" opacity="0.9"/>
+      <path d="M56.6,-56.6 Q76.6,-36.6 56.6,-16.6 Q36.6,-36.6 56.6,-56.6" opacity="0.9" transform="rotate(45)"/>
+      <path d="M80,0 Q80,20 60,0 Q80,-20 80,0" opacity="0.9" transform="rotate(90)"/>
+      <path d="M56.6,56.6 Q76.6,76.6 56.6,96.6 Q36.6,76.6 56.6,56.6" opacity="0.9" transform="rotate(135)"/>
+      <path d="M0,80 Q20,60 0,40 Q-20,60 0,80" opacity="0.9" transform="rotate(180)"/>
+      <path d="M-56.6,56.6 Q-36.6,76.6 -56.6,96.6 Q-76.6,76.6 -56.6,56.6" opacity="0.9" transform="rotate(225)"/>
+      <path d="M-80,0 Q-80,-20 -60,0 Q-80,20 -80,0" opacity="0.9" transform="rotate(270)"/>
+      <path d="M-56.6,-56.6 Q-36.6,-36.6 -56.6,-16.6 Q-76.6,-36.6 -56.6,-56.6" opacity="0.9" transform="rotate(315)"/>
+    </g>
+    
+    <!-- Inner circle -->
+    <circle cx="0" cy="0" r="50" stroke="white" stroke-width="3" fill="rgba(255,255,255,0.2)"/>
+    
+    <!-- Arrow pointing up -->
+    <path d="M0,-30 L-15,-10 L-5,-10 L-5,20 L5,20 L5,-10 L15,-10 Z" fill="white"/>
+  </g>
+</svg>
